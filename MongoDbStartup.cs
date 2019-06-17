@@ -38,7 +38,6 @@ namespace auth
 
             var createdNewRepository = false;
 
-
             //  --Client
             if (!repository.CollectionExists<Client>())
             {
@@ -59,7 +58,6 @@ namespace auth
                 createdNewRepository = true;
             }
 
-
             //  --ApiResource
             if (!repository.CollectionExists<ApiResource>())
             {
@@ -70,20 +68,17 @@ namespace auth
                 createdNewRepository = true;
             }
 
-
             //Populate MongoDB with dummy users to enable test - e.g. Bob, Alice
             if (createdNewRepository == true)
             {
                 AddSampleUsersToMongo(userManager);
             }
 
-
             // If it's a new Repository (database), need to restart the website to configure Mongo to ignore Extra Elements.
             if (createdNewRepository)
             {
                 throw new Exception(_newRepositoryMsg);
             }
-
         }
 
         /// <summary>
@@ -132,7 +127,6 @@ namespace auth
                     throw new Exception("Could not locate user email from  claims!");
                 }
 
-
                 var user = new IdentityUser()
                 {
                     UserName = usrDummy.Username,
@@ -141,8 +135,6 @@ namespace auth
                     Email = userDummyEmail.Value,
                     NormalizedEmail = userDummyEmail.Value
                 };
-
-
 
                 foreach (var claim in usrDummy.Claims)
                 {
