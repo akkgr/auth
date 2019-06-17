@@ -48,7 +48,7 @@ namespace auth.Extension
             // Configure Asp Net Core Identity / Role to use MongoDB
             builder.Services.AddSingleton<IUserStore<TIdentity>>(x =>
             {
-                var usersCollection = database.GetCollection<TIdentity>("Identity_Users");
+                var usersCollection = database.GetCollection<TIdentity>("Users");
                 IndexChecks.EnsureUniqueIndexOnNormalizedEmail(usersCollection);
                 IndexChecks.EnsureUniqueIndexOnNormalizedUserName(usersCollection);
                 return new UserStore<TIdentity>(usersCollection);
@@ -56,7 +56,7 @@ namespace auth.Extension
 
             builder.Services.AddSingleton<IRoleStore<TRole>>(x =>
             {
-                var rolesCollection = database.GetCollection<TRole>("Identity_Roles");
+                var rolesCollection = database.GetCollection<TRole>("Roles");
                 IndexChecks.EnsureUniqueIndexOnNormalizedRoleName(rolesCollection);
                 return new RoleStore<TRole>(rolesCollection);
             });

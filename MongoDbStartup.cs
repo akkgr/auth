@@ -30,13 +30,25 @@ namespace auth
             //Resolve Repository with ASP .NET Core DI help 
             var repository = app.ApplicationServices.GetService<IRepository>();
 
-            //Resolve ASP .NET Core Identity with DI help
-            var userManager = app.ApplicationServices.GetService<UserManager<IdentityUser>>();
+            // var userManager = app.ApplicationServices.GetService<UserManager<IdentityUser>>();
 
             // --- Configure Classes to ignore Extra Elements (e.g. _Id) when deserializing ---
             ConfigureMongoDriver2IgnoreExtraElements();
 
             var createdNewRepository = false;
+
+            //Resolve ASP .NET Core Identity with DI help
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                //Resolve ASP .NET Core Identity with DI help
+                var userManager = (UserManager<IdentityUser>)scope.ServiceProvider.GetService(typeof(UserManager<IdentityUser>));
+
+                //Populate MongoDB with dummy users to enable test - e.g. Bob, Alice
+                if (createdNewRepository == true)
+                {
+                    AddSampleUsersToMongo(userManager);
+                }
+            }
 
             //  --Client
             if (!repository.CollectionExists<Client>())
@@ -66,12 +78,6 @@ namespace auth
                     repository.Add(api);
                 }
                 createdNewRepository = true;
-            }
-
-            //Populate MongoDB with dummy users to enable test - e.g. Bob, Alice
-            if (createdNewRepository == true)
-            {
-                AddSampleUsersToMongo(userManager);
             }
 
             // If it's a new Repository (database), need to restart the website to configure Mongo to ignore Extra Elements.
