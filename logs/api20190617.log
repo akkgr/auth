@@ -1,0 +1,144 @@
+2019-06-17 11:26:29.850 +03:00 [INF] User profile is available. Using 'C:\Users\tasos\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-06-17 11:26:29.951 +03:00 [INF] Starting IdentityServer4 version 2.4.0.0
+2019-06-17 11:26:29.974 +03:00 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2019-06-17 11:26:29.976 +03:00 [DBG] Using Identity.Application as default ASP.NET Core scheme for authentication
+2019-06-17 11:26:29.977 +03:00 [DBG] Using Identity.External as default ASP.NET Core scheme for sign-in
+2019-06-17 11:26:29.978 +03:00 [DBG] Using Identity.External as default ASP.NET Core scheme for sign-out
+2019-06-17 11:26:29.979 +03:00 [DBG] Using Identity.Application as default ASP.NET Core scheme for challenge
+2019-06-17 11:26:29.980 +03:00 [DBG] Using Identity.Application as default ASP.NET Core scheme for forbid
+2019-06-17 11:26:30.241 +03:00 [FTL] Application startup exception
+System.InvalidOperationException: Cannot resolve scoped service 'Microsoft.AspNetCore.Identity.UserManager`1[Microsoft.AspNetCore.Identity.MongoDB.IdentityUser]' from root provider.
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteValidator.ValidateResolution(Type serviceType, IServiceScope scope, IServiceScope rootScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.Microsoft.Extensions.DependencyInjection.ServiceLookup.IServiceProviderEngineCallback.OnResolve(Type serviceType, IServiceScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.GetService(Type serviceType, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetService[T](IServiceProvider provider)
+   at auth.MongoDbStartup.UseMongoDbForIdentityServer(IApplicationBuilder app) in C:\Repositories\auth\MongoDbStartup.cs:line 34
+   at auth.Startup.Configure(IApplicationBuilder app, IHostingEnvironment env) in C:\Repositories\auth\Startup.cs:line 64
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Hosting.ConventionBasedStartup.Configure(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Mvc.Internal.MiddlewareFilterBuilderStartupFilter.<>c__DisplayClass0_0.<Configure>g__MiddlewareFilterBuilder|0(IApplicationBuilder builder)
+   at Microsoft.AspNetCore.HostFilteringStartupFilter.<>c__DisplayClass0_0.<Configure>b__0(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Hosting.Internal.AutoRequestServicesStartupFilter.<>c__DisplayClass0_0.<Configure>b__0(IApplicationBuilder builder)
+   at Microsoft.AspNetCore.Hosting.Internal.WebHost.BuildApplication()
+2019-06-17 11:30:06.301 +03:00 [INF] User profile is available. Using 'C:\Users\tasos\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-06-17 11:30:06.380 +03:00 [INF] Starting IdentityServer4 version 2.4.0.0
+2019-06-17 11:30:06.590 +03:00 [FTL] Application startup exception
+System.ArgumentNullException: Value cannot be null.
+Parameter name: connectionString
+   at MongoDB.Driver.Core.Misc.Ensure.IsNotNull[T](T value, String paramName)
+   at MongoDB.Driver.Core.Configuration.ConnectionString..ctor(String connectionString)
+   at MongoDB.Driver.MongoUrlBuilder.Parse(String url)
+   at MongoDB.Driver.MongoUrl..ctor(String url)
+   at MongoDB.Driver.MongoClient..ctor(String connectionString)
+   at auth.Repository.MongoRepository..ctor(IOptions`1 optionsAccessor) in C:\Repositories\auth\Repository\MongoRepository.cs:line 28
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(IServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitTransient(TransientCallSite transientCallSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(IServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(IServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScoped(ScopedCallSite scopedCallSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitSingleton(SingletonCallSite singletonCallSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(IServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass1_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.GetService(Type serviceType, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.AspNetCore.Builder.IdentityServerApplicationBuilderExtensions.TestService(IServiceProvider serviceProvider, Type service, ILogger logger, String message, Boolean doThrow) in C:\local\identity\server4\IdentityServer4\src\IdentityServer4\src\Configuration\IdentityServerApplicationBuilderExtensions.cs:line 149
+   at Microsoft.AspNetCore.Builder.IdentityServerApplicationBuilderExtensions.Validate(IApplicationBuilder app) in C:\local\identity\server4\IdentityServer4\src\IdentityServer4\src\Configuration\IdentityServerApplicationBuilderExtensions.cs:line 60
+   at Microsoft.AspNetCore.Builder.IdentityServerApplicationBuilderExtensions.UseIdentityServer(IApplicationBuilder app) in C:\local\identity\server4\IdentityServer4\src\IdentityServer4\src\Configuration\IdentityServerApplicationBuilderExtensions.cs:line 29
+   at auth.Startup.Configure(IApplicationBuilder app, IHostingEnvironment env) in C:\Repositories\auth\Startup.cs:line 60
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Hosting.ConventionBasedStartup.Configure(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Mvc.Internal.MiddlewareFilterBuilderStartupFilter.<>c__DisplayClass0_0.<Configure>g__MiddlewareFilterBuilder|0(IApplicationBuilder builder)
+   at Microsoft.AspNetCore.HostFilteringStartupFilter.<>c__DisplayClass0_0.<Configure>b__0(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Hosting.Internal.AutoRequestServicesStartupFilter.<>c__DisplayClass0_0.<Configure>b__0(IApplicationBuilder builder)
+   at Microsoft.AspNetCore.Hosting.Internal.WebHost.BuildApplication()
+2019-06-17 11:32:07.220 +03:00 [INF] User profile is available. Using 'C:\Users\tasos\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-06-17 11:32:07.301 +03:00 [INF] Starting IdentityServer4 version 2.4.0.0
+2019-06-17 11:32:07.324 +03:00 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2019-06-17 11:32:07.326 +03:00 [DBG] Using Identity.Application as default ASP.NET Core scheme for authentication
+2019-06-17 11:32:07.345 +03:00 [DBG] Using Identity.External as default ASP.NET Core scheme for sign-in
+2019-06-17 11:32:07.382 +03:00 [DBG] Using Identity.External as default ASP.NET Core scheme for sign-out
+2019-06-17 11:32:07.421 +03:00 [DBG] Using Identity.Application as default ASP.NET Core scheme for challenge
+2019-06-17 11:32:07.464 +03:00 [DBG] Using Identity.Application as default ASP.NET Core scheme for forbid
+2019-06-17 11:32:07.694 +03:00 [FTL] Application startup exception
+System.InvalidOperationException: Cannot resolve scoped service 'Microsoft.AspNetCore.Identity.UserManager`1[Microsoft.AspNetCore.Identity.MongoDB.IdentityUser]' from root provider.
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteValidator.ValidateResolution(Type serviceType, IServiceScope scope, IServiceScope rootScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.Microsoft.Extensions.DependencyInjection.ServiceLookup.IServiceProviderEngineCallback.OnResolve(Type serviceType, IServiceScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.GetService(Type serviceType, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetService[T](IServiceProvider provider)
+   at auth.MongoDbStartup.UseMongoDbForIdentityServer(IApplicationBuilder app) in C:\Repositories\auth\MongoDbStartup.cs:line 34
+   at auth.Startup.Configure(IApplicationBuilder app, IHostingEnvironment env) in C:\Repositories\auth\Startup.cs:line 62
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Hosting.ConventionBasedStartup.Configure(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Mvc.Internal.MiddlewareFilterBuilderStartupFilter.<>c__DisplayClass0_0.<Configure>g__MiddlewareFilterBuilder|0(IApplicationBuilder builder)
+   at Microsoft.AspNetCore.HostFilteringStartupFilter.<>c__DisplayClass0_0.<Configure>b__0(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Hosting.Internal.AutoRequestServicesStartupFilter.<>c__DisplayClass0_0.<Configure>b__0(IApplicationBuilder builder)
+   at Microsoft.AspNetCore.Hosting.Internal.WebHost.BuildApplication()
+2019-06-17 11:43:22.025 +03:00 [INF] User profile is available. Using 'C:\Users\tasos\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-06-17 11:43:22.101 +03:00 [INF] Starting IdentityServer4 version 2.4.0.0
+2019-06-17 11:43:22.300 +03:00 [FTL] Application startup exception
+System.InvalidOperationException: Scheme already exists: Identity.Application
+   at Microsoft.AspNetCore.Authentication.AuthenticationOptions.AddScheme(String name, Action`1 configureBuilder)
+   at Microsoft.AspNetCore.Authentication.AuthenticationBuilder.<>c__DisplayClass4_0`2.<AddSchemeHelper>b__0(AuthenticationOptions o)
+   at Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure(String name, TOptions options)
+   at Microsoft.Extensions.Options.OptionsFactory`1.Create(String name)
+   at Microsoft.Extensions.Options.OptionsManager`1.<>c__DisplayClass5_0.<Get>b__0()
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)
+   at System.Lazy`1.CreateValue()
+   at Microsoft.Extensions.Options.OptionsCache`1.GetOrAdd(String name, Func`1 createOptions)
+   at Microsoft.Extensions.Options.OptionsManager`1.Get(String name)
+   at Microsoft.Extensions.Options.OptionsManager`1.get_Value()
+   at Microsoft.AspNetCore.Authentication.AuthenticationSchemeProvider..ctor(IOptions`1 options, IDictionary`2 schemes)
+   at Microsoft.AspNetCore.Authentication.AuthenticationSchemeProvider..ctor(IOptions`1 options)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(IServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScoped(ScopedCallSite scopedCallSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitSingleton(SingletonCallSite singletonCallSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(IServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass1_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.GetService(Type serviceType, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Microsoft.AspNetCore.Builder.IdentityServerApplicationBuilderExtensions.ValidateAsync(IServiceProvider services, ILogger logger)
+   at Microsoft.AspNetCore.Builder.IdentityServerApplicationBuilderExtensions.Validate(IApplicationBuilder app) in C:\local\identity\server4\IdentityServer4\src\IdentityServer4\src\Configuration\IdentityServerApplicationBuilderExtensions.cs:line 75
+   at Microsoft.AspNetCore.Builder.IdentityServerApplicationBuilderExtensions.UseIdentityServer(IApplicationBuilder app) in C:\local\identity\server4\IdentityServer4\src\IdentityServer4\src\Configuration\IdentityServerApplicationBuilderExtensions.cs:line 29
+   at auth.Startup.Configure(IApplicationBuilder app, IHostingEnvironment env) in C:\Repositories\auth\Startup.cs:line 61
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Hosting.ConventionBasedStartup.Configure(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Mvc.Internal.MiddlewareFilterBuilderStartupFilter.<>c__DisplayClass0_0.<Configure>g__MiddlewareFilterBuilder|0(IApplicationBuilder builder)
+   at Microsoft.AspNetCore.HostFilteringStartupFilter.<>c__DisplayClass0_0.<Configure>b__0(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Hosting.Internal.AutoRequestServicesStartupFilter.<>c__DisplayClass0_0.<Configure>b__0(IApplicationBuilder builder)
+   at Microsoft.AspNetCore.Hosting.Internal.WebHost.BuildApplication()
+2019-06-17 11:44:02.255 +03:00 [INF] User profile is available. Using 'C:\Users\tasos\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-06-17 11:44:02.332 +03:00 [INF] Starting IdentityServer4 version 2.4.0.0
+2019-06-17 11:44:02.353 +03:00 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2019-06-17 11:44:02.354 +03:00 [DBG] Using Identity.Application as default ASP.NET Core scheme for authentication
+2019-06-17 11:44:02.355 +03:00 [DBG] Using Identity.External as default ASP.NET Core scheme for sign-in
+2019-06-17 11:44:02.357 +03:00 [DBG] Using Identity.External as default ASP.NET Core scheme for sign-out
+2019-06-17 11:44:02.358 +03:00 [DBG] Using Identity.Application as default ASP.NET Core scheme for challenge
+2019-06-17 11:44:02.359 +03:00 [DBG] Using Identity.Application as default ASP.NET Core scheme for forbid
+2019-06-17 11:44:02.395 +03:00 [FTL] Application startup exception
+System.InvalidOperationException: Cannot resolve scoped service 'Microsoft.AspNetCore.Identity.UserManager`1[Microsoft.AspNetCore.Identity.MongoDB.IdentityUser]' from root provider.
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteValidator.ValidateResolution(Type serviceType, IServiceScope scope, IServiceScope rootScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.Microsoft.Extensions.DependencyInjection.ServiceLookup.IServiceProviderEngineCallback.OnResolve(Type serviceType, IServiceScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.GetService(Type serviceType, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetService[T](IServiceProvider provider)
+   at auth.MongoDbStartup.UseMongoDbForIdentityServer(IApplicationBuilder app) in C:\Repositories\auth\MongoDbStartup.cs:line 34
+   at auth.Startup.Configure(IApplicationBuilder app, IHostingEnvironment env) in C:\Repositories\auth\Startup.cs:line 62
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Hosting.ConventionBasedStartup.Configure(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Mvc.Internal.MiddlewareFilterBuilderStartupFilter.<>c__DisplayClass0_0.<Configure>g__MiddlewareFilterBuilder|0(IApplicationBuilder builder)
+   at Microsoft.AspNetCore.HostFilteringStartupFilter.<>c__DisplayClass0_0.<Configure>b__0(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Hosting.Internal.AutoRequestServicesStartupFilter.<>c__DisplayClass0_0.<Configure>b__0(IApplicationBuilder builder)
+   at Microsoft.AspNetCore.Hosting.Internal.WebHost.BuildApplication()

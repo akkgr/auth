@@ -7,6 +7,9 @@ using auth.Repository;
 using auth.Store;
 using MongoDB.Driver;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.MongoDB;
+using IdentityUser = Microsoft.AspNetCore.Identity.MongoDB.IdentityUser;
+using IdentityRole = Microsoft.AspNetCore.Identity.MongoDB.IdentityRole;
 
 namespace auth.Extension
 {
