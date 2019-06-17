@@ -9,6 +9,7 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="IdentityServer4" Version="2.4.0" />
+    <PackageReference Include="IdentityServer4.AspNetIdentity" Version="2.4.0" />
     <PackageReference Include="MongoDB.Bson" Version="2.8.1" />
     <PackageReference Include="MongoDB.Driver" Version="2.8.1" />
     <PackageReference Include="MongoDB.Driver.Core" Version="2.8.1" />

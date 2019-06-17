@@ -7,6 +7,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using IdentityUser = Microsoft.AspNetCore.Identity.MongoDB.IdentityUser;
 using IdentityRole = Microsoft.AspNetCore.Identity.MongoDB.IdentityRole;
+using Microsoft.AspNetCore.Identity;
+using System;
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace auth
 {
@@ -24,7 +27,25 @@ namespace auth
         {
             services.Configure<ConfigurationOptions>(Configuration);
             services.AddSingleton<IProfileService, ProfileService>();
-            //services.AddIdentityWithMongoStores($"{Configuration.GetValue<string>("MongoConnection")}/{Configuration.GetValue<string>("MongoDatabaseName")}");
+
+            // var connectionString = $"{Configuration.GetValue<string>("MongoConnection")}/{Configuration.GetValue<string>("MongoDatabaseName")}";
+            // services.AddIdentityWithMongoStoresUsingCustomTypes<IdentityUser, IdentityRole>(connectionString)
+            //     .AddDefaultTokenProviders();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Lockout.MaxFailedAccessAttempts = 6;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromHours(1);
+                options.Lockout.AllowedForNewUsers = true;
+                options.Password.RequiredLength = 8;
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+            });
+
+            services.AddCors();
+
             services.AddIdentityServer(
                     // Enable IdentityServer events for logging capture - Events are not turned on by default
                     options =>
@@ -40,6 +61,7 @@ namespace auth
                 .AddClients()
                 .AddIdentityApiResources()
                 .AddPersistedGrants()
+                .AddAspNetIdentity<IdentityUser>()
                 .AddProfileService<ProfileService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -48,21 +70,19 @@ namespace auth
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
+            app.UseCors(builder =>
+                builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().AllowCredentials()
+            );
+
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
 
             app.UseIdentityServer();
             app.UseMongoDbForIdentityServer();
             app.UseAuthentication();
 
-            app.UseHttpsRedirection();
             app.UseMvc();
         }
     }
